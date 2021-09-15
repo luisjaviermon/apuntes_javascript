@@ -1,0 +1,3 @@
+- vue es un framework basado en componentes
+(cada componente es son pequeños elementos que interactuan
+como un todo, pero que son independientes uno de otro)
