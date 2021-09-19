@@ -36,5 +36,104 @@ retornan ambos el tamaño nuevo del arreglo
   * .shift(): elimina el primer elemento de la lista
 */
 
+/*
+  Array.from(iterable): convierte en array cualquier iterable
+*/
+let palabra = "Hola mundo";
+let nuevo = Array.from(palabra);
+console.log(nuevo)
+
+//callback es una funcion que se pasa como argumento
+/*
+  sort([callback]): ordena alfabeticamente (unicode) o en base 
+  al algoritmo definido en el callback
+*/
+nuevo = ['b','z','x','a'];
+console.log(nuevo);
+console.log(nuevo.sort());
+
+nuevo = [1,100,266,15];
+console.log(nuevo.sort((e1,e2) => e1-e2));
+/*
+  para el caso de la funcion callback debe de cumplir con retorna
+  r un valor numerico
+  si callback(a,b) retorna un valor < 0, enconces a va primero
+  [b,a] -> [a,b]
+  si callback(a,b) retorna un valor > 0, enconces b va primero
+  [a,b] -> [b,a]
+  si callback(a,b) retorna un valor = 0, enconces los valores no 
+  sufren cambios
+*/
+
+//foreach(val_actual[, index]) - ejecuta la funcion indicada 
+//console.log(nuevo.forEach((val_actual) => console.log(val_actual)));
+
+console.log(nuevo.forEach(
+  (val_actual,index) => {
+    console.log(val_actual + " en la posicion " + index);
+  }
+)
+);
+
+/*
+  .some(callback) - comprueba si algun elemento cumple con la 
+  condicion
+  .every(callback) - comprueba si todos los elementos cumplen 
+  con la condicion
+*/
+
+console.log(nuevo.some(numero => numero -100 > 0));
+console.log(nuevo.every(
+    (numero) => {
+      return numero == 100;
+    }
+  )
+);
+
+/*
+  map(callback) - transforma todos los elementos del array y 
+  retorna un nuevo array
+*/
+  console.log(nuevo.map(
+    (val) => {
+      return val*2;
+    }
+  ));
+
+/*
+  filter(callback) - filtra todos los elementos que cumplan con 
+  la condicion
+*/
+console.log(nuevo.filter(valor => valor%5 == 0));
+
+/*
+  reduce(callback) - aplica la funcion a cada par de elementos
+  para terminar con uno solo
+*/
+console.log(nuevo);
+//((1/15)/100)/266
+console.log(nuevo.reduce(
+  (a,b) => {
+    return a/b;
+  }
+));
+
+//se pueden inicializar las variables dentro de un callback para
+//algunos casos
+
+const arr_usuarios = [
+  {name: 'user1', online: true},
+  {name: 'user2', online: false},
+  {name: 'user3', online: true}
+];
+
+let conectados = arr_usuarios.reduce(
+  (cont,user) => {
+    if(user.online) cont++;
+    return cont;
+  }
+,0);
+
+console.log(`hay ${conectados} usuarios conectados`);
 //para la documentacion de array esta en 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
